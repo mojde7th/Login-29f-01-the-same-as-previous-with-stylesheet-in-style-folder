@@ -1,0 +1,277 @@
+﻿
+@model Login.Models.Yearmonth
+@{ ViewBag.Title = "انتخاب ماه و سال";
+     }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>سامانه دریافت فایل</title>
+    <link rel='stylesheet' href='https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css'>
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Styles/style6.css">
+    <link href="~/Styles/font-awesome.css" rel="stylesheet" />
+    <link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/css/bootstrap.min.css'>
+   
+
+</head>
+<body style="direction:rtl">
+    <!-- partial:index.partial.html -->
+    <div class="layout has-sidebar fixed-sidebar fixed-header">
+        <aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+            <div class="image-wrapper">
+                @*<img src="~/images/ee5.jpg" />*@
+
+                <img src="~/images/111.jpg" />
+
+            </div>
+            <div class="sidebar-layout">
+                <div class="sidebar-header" style="direction:rtl;justify-content:center;">
+                    @*<span style="
+                text-transform: uppercase;
+                font-size: 15px;
+                letter-spacing: 3px;
+                font-weight: bold;
+              ">فهرست</span>*@
+                    <!--<br />
+                    <div class="layout" style="color:white;justify-content:left;direction:ltr">-->
+                    @*<header class="header" style="color:white">
+                            <a id="btn-collapse" href="#">
+                                <i class="ri-menu-line ri-xl" style="color:white"></i>
+                            </a>
+
+                            <a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg">
+                                <i class="ri-menu-line ri-xl"></i>
+                            </a>
+                        </header>*@
+
+                    <!--</div>-->
+                </div>
+
+                <div class="sidebar-content">
+                    <nav class="menu open-current-submenu">
+                        <ul>
+                            <li class="menu-item sub-menu">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="ri-save-3-fill"></i>
+                                    </span>
+                                    @*<span class="iconify" data-icon="flat-color-icons:video-call"></span>*@
+                                    <span class="menu-title">ویدیو آموزشی</span>
+                                    <span class="menu-suffix">&#x1F3A6;</span>
+                                </a>
+                                <div class="sub-menu-list">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <a href="#">
+                                                <span class="menu-title">توضیحات 1</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="menu-item sub-menu">
+                                            <a href="#">
+                                                <span class="menu-title">توضیحات 2</span>
+                                            </a>
+                                            <div class="sub-menu-list">
+                                                <ul>
+                                                    <li class="menu-item">
+                                                        <a href="#">
+                                                            <span class="menu-title">فرم 1</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a href="#">
+                                                            <span class="menu-title">فرم 2</span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item sub-menu">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="ri-bar-chart-2-fill"></i>
+                                    </span>
+                                    <span class="menu-title">بارگذاری‌های پیشین</span>
+
+                                </a>
+
+                                <div class="sub-menu-list">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <a href="#">
+                                                <span class="menu-title">گزارش 1</span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="#">
+                                                <span class="menu-title">گزارش 2</span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="#">
+                                                <span class="menu-title">گزارش 3</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="ri-book-2-fill"></i>
+                                    </span>
+                                    <span class="menu-title">اسناد</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="ri-calendar-fill"></i>
+                                    </span>
+                                    <span class="menu-title">زمان بندی</span>
+                                </a>
+                            </li>
+                            @*<li class="menu-item">
+
+                                <a href="@Url.Action("Login", "Account")">
+                                    <span class="menu-icon">
+                                        <i class="ri-calendar-fill"></i>
+                                    </span>
+                                    <span class="menu-title">خروج</span>
+                                </a>
+                            </li>*@
+
+                            <li class="menu-item">
+
+                                <a href="/Account/login">
+                                    <span class="menu-icon">
+                                        <i class="ri-calendar-fill"></i>
+                                    </span>
+                                    <span class="menu-title">خروج</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="sidebar-footer" style="direction:rtl;justify-content:center;"><span>وزارت نفت</span></div>
+            </div>
+        </aside>
+        <div id="overlay" class="overlay"></div>
+        <div class="layout">
+            <header class="header">
+                <a id="btn-collapse" href="#">
+                    <i class="ri-menu-line ri-xl"></i>
+                </a>
+                <a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg">
+                    <i class="ri-menu-line ri-xl"></i>
+                </a>
+            </header>
+            <div style="direction: rtl; float: right; display: block;">
+                <br /><br /><br /><br />
+
+                <ul class="nav nav-tabs" id="myTab" style="float:right; display:block; direction:rtl ">
+                    <li style="float:right" class="active"><a href="#home" data-toggle="tab">اطلاعات حقوق</a></li>
+                    <li style="float:right"><a href="#profile" data-toggle="tab" ">اطلاعات پرسنلی</a></li>
+                    <li style="float:right"><a href="#messages" data-toggle="tab">روند بارگذاری</a></li>
+                    <li style="float:right"><a href="#settings" data-toggle="tab">اطلاعات بیشتر</a></li>
+                    @*<li style="float:right"><a href="#settings" data-toggle="tab" onclick="refresh()">اطلاعات بیشتر</a></li>*@
+
+                </ul>
+
+
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active show" id="home">
+                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                    </div>
+                    <div class="tab-pane fade" id="profile">
+                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    </div>
+                    <div class="tab-pane fade" id="dropdown1">
+                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+                    </div>
+                    <div class="tab-pane fade" id="dropdown2">
+                        <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" style="float:right">
+                    <div class="tab-pane active" id="home">@RenderBody()</div>
+                    <div class="tab-pane" id="profile">
+                        <center>
+                            <br /><br /><br /><br /><br />
+                            <h2>انتخاب ماه و سال</h2>
+                        </center>
+                        <div class="w3ls-login box box--big">
+                            <form action="submit2" method="post">
+                                <div class="agile-field-txt" style="text-align:center">
+                                    @if (ViewBag.monthlist != null)
+                                    {
+                        @Html.DropDownListFor(model => model.selyearId, ViewBag.yearlist as SelectList, "--انتخاب سال", new { @class = "form-control" })}
+                                    @if (ViewBag.monthlist != null)
+                                    {
+                        @Html.DropDownListFor(model => model.selmonthId, ViewBag.monthlist as SelectList, "--انتخاب ماه", new { @class = "form-control" })}
+                                </div>
+                                <br /><div style="text-align:center">
+                                    <input type="submit" value="انتخاب">
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="messages"><br /><br /><br /><br /><br /> محتوای تب 2</div>
+                    <div class="tab-pane" id="settings"><br /><br /><br /><br /><br />محتوای تب 3</div>
+                </div>
+                <!-- partial -->
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
+                <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+                <script>
+                    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+                        localStorage.setItem('activeTab', $(e.target).attr('href'));
+                    });
+                    var activeTab = localStorage.getItem('activeTab');
+                    console.log(activeTab);
+                    if (activeTab) {
+                        $('a[href="' + activeTab + '"]').tab('show');
+                    }
+                </script>
+                <script>
+                    function refresh() {
+                        window.location.reload();
+                    }
+                </script>
+            </div>
+            
+
+            <footer class="footer">
+                <small style="margin-bottom: 20px; display: inline-block">
+                    1400©
+                    <br />
+                    <a target="_blank" href=""> وزارت نفت </a>
+                </small>
+                <br />
+
+            </footer>
+            <div class="overlay"></div>
+        </div>
+    </div>
+    <!-- partial -->
+    @*<script src='https://unpkg.com/@popperjs/core@2'></script>*@
+    <script src="~/Styles/script6.js"></script>
+    <script src="https://code.iconify.design/2/2.2.0/iconify.min.js"></script>
+ 
+    <script src="~/js/jquery-1.11.2.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+</body>
+</html>

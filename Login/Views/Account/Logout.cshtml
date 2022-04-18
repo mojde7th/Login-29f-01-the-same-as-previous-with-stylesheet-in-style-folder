@@ -1,0 +1,313 @@
+﻿
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>NIOC Web Client</title>
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/font-awesome.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- Chrome for Android -->
+    <!-- <link rel="icon" sizes="192x192" href="/images/android-icon-192x192.png" /> -->
+    <!-- Apple iPhone Retina-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-167x167.png">
+    <!-- Apple iPad Retina-->
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/apple-icon-180x180.png">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css?v=3.7" />
+
+    <link rel="stylesheet" href="/custom/css/cerulean-theme.min.css?v=10" />
+
+    <link rel="stylesheet" href="/css/common.min.css?v=10" />
+
+
+    <!--<style id="antiClickjack">body{display:none !important;}</style>-->
+    <!--[if gte IE 9]>
+        <style type="text/css">
+            .gradient { filter: none; }
+        </style>
+    <![endif]-->
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/common-ie8.css?v=1" />
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.min.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js?v=3.7"></script>
+
+    <!-- Javascript language file -->
+    <script src="/lang/i18.js?v=10" charset="utf-8"></script>
+
+    <script src="/js/cftp.functions.js?v=10"></script>
+
+
+
+
+
+
+
+</head>
+<body onload="getcookiedata()">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="hidden-xs" src="/images/logo/fava 230.70.png" width="230" height="70" alt="logo"><span class="visible-xs-inline">NIOC</span></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="home_tab" class="nav_home_item"><a href="#">Home</a></li>
+                    <li id="account_tab"><a href="#">Account</a></li>
+
+
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- Wrap all page content here -->
+    <div id="wrap" class="off">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <div class="page-header">
+                        <h1 class="page-title"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Sign In</h1>
+                    </div>
+                </li>
+                <li class="active">
+                    <a href="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Home</a>
+                </li>
+                <li class="">
+                    <a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;Account</a>
+                </li>
+
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <div id="page-content-wrapper">
+
+            <!-- Begin page content -->
+            <div class="container-fluid">
+                <div id="status-container">
+
+                    <div id="status" class="alert alert-dismissable alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+
+                        <div><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;User has been logged out</div>
+
+                    </div>
+
+                </div>
+
+                <form id="login-form" action="verify" method="post">
+                    <div class="row">
+
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
+
+
+                            <div id="login" class="panel panel-default">
+                                <div class="panel-body">
+
+                                    <div class="row row-eq-height">
+
+                                        <div class="col-lg-5 col-md-5 col-sm-6">
+                                            <div id="welcome">
+                                                <div>
+                                                    <p dir="rtl">
+                                                        توجه
+                                                        :
+                                                        <br />این سرویس فاقد پشتیبانگیری اطلاعات بارگذاری شده می باشد.( NO BACKUP)
+                                                        <br />
+                                                        فناوری اطلاعات هیچ مسولیتی بابت صحت اطلاعات کاربران ندارد.
+                                                        <br />
+                                                    </p>
+                                                    <p dir="ltr">
+                                                        Welcome to NIOC Integrated SFTP Server
+                                                        Created by NIOC Co.
+                                                        Requirements:Download Forms And Browsers -->
+                                                        <a href=''>FireFox Or Chorme Browser New Version</a>
+                                                    </p>
+                                                </div>
+
+                                                <br />
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input name="welcomeAcknowledgment" type="checkbox" required="required" /> I have read and agree to the above terms and conditions.
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-6">
+
+
+                                            <div style="padding: 40px 40px 40px 40px;">
+                                                <input type="hidden" name="csrftoken" id="csrftoken" value="VMKYc8OpwoR2c1YOwqLDtMOrNcKbwrdzwodWw4zCrA" />
+                                                <input type="hidden" name="r" id="r" value="" />
+                                                <div class="clearfix">
+                                                    <div class="pull-left"><img src="/images/logo/ict70.70.png" width="70" height="70" alt="Login icon" /></div>
+                                                    <div class="pull-left login-text">Client Login</div>
+                                                </div>
+
+                                                <div class="form-group" style="margin-top: 1.75em">
+                                                    <label class="control-label sr-only" for="username">Username:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" id="username-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                        <input type="text" name="Username" id="username" class="form-control" placeholder="Username" aria-describedby="username-addon" maxlength="255" autocomplete="off" required value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label sr-only" for="password">Password:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" id="password-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                                        <input type="password" name="Pass" id="password" class="form-control" placeholder="Password" aria-describedby="password-addon" maxlength="255" autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                                <label for="rememberme"><small>Remember me?</small></label>
+                                                <input type="checkbox" name="rememberme" id="rememberme"
+                                                                    onclick="setcookie()" />
+
+                                                <div class="login-spacer">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button class="btn btn-primary btn-block" type="submit" id="login-button" name="Submit" data-loading-text="Please wait..." value="Sign in">Sign in</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+
+                    function setcookie() {
+                        var u = document.getElementById('username').value;
+                        var p = document.getElementById('password').value;
+
+                        document.cookie = "myusrname=" + u + ";path=https://localhost:44352/";
+                        document.cookie = "mypswd=" + p + ";path=https://localhost:44352/";
+                    }
+
+
+                    function getcookiedata() {
+
+                        console.log(document.cookie);
+
+                        var user = getCookie('myusrname');
+                        var pswd = getCookie('mypswd');
+
+                        document.getElementById('username').value = user;
+                        document.getElementById('password').value = pswd;
+
+                    }
+
+
+
+
+                    function getCookie(cname) {
+                        var name = cname + "=";
+                        var decodedCookie = decodeURIComponent(document.cookie);
+                        var ca = decodedCookie.split(';');
+                        for (var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
+
+
+
+
+                </script>
+
+
+
+                <script type="text/javascript">
+                    //<![CDATA[
+
+                    $(document).ready(function () {
+
+                        $("#username").focus();
+
+                        $("#login-form").submit(function () {
+
+                            $("#login-button").button("loading");
+                        });
+                    });
+
+                                                                                                                                                    //]]>
+                </script>
+
+            </div>
+            <!-- End page content -->
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+
+    <div id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-2">
+                    <p class="text-muted credit">
+                        <span class="text-muted"><span class="label label-lc">English</span></span>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    <p class="text-muted credit text-center">
+                        <a href="#">Home</a>
+                        &nbsp;<span class="sep_footer_nav">|</span><a href="#">Account</a>
+
+                        &nbsp;<span class="sep_footer_nav">|</span><a href="#" id="_context_help_"><span class="glyphicon glyphicon-question-sign"></span> </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

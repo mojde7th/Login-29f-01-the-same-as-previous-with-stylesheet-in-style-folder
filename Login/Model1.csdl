@@ -1,0 +1,89 @@
+<Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="month">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="monthname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="monthnum" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Pass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CompanyStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="CompanyCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="PayrollStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="PayrollCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="year">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yearname" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="yearnum" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SALARY_YYMM" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="REG_NO" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Name="COMPANY_CODE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="MG_CODE" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="PYRLCMP_CODE" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="NATIONAL_NO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FATHER_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="ID_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SEX_CODE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="BIRTH_DATE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="POST_LEVEL" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="EDUCAT_LEVEL" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="EMPLOYM_TYPE" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="GRADE" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="SERVICE_YEAR" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="C6626" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6352" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C5184" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6373" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6356" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C5185" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6357" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6358" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6369" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6359" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6362" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6363" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C5181" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6299" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6178" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6177" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6364" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6365" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6353" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C5192" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6366" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6262" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6367" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6207" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6206" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6372" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C6368" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C5207" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Main_NetSalary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KI_NetSalary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="months" EntityType="Self.month" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="years" EntityType="Self.year" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+  </EntityContainer>
+</Schema>

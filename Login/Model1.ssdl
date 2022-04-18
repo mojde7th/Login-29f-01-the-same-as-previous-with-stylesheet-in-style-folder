@@ -1,0 +1,142 @@
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'of1.dbo.Employee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SALARY_YYMM" Type="nchar" MaxLength="4" />
+    <Property Name="REG_NO" Type="nchar" MaxLength="7" />
+    <Property Name="COMPANY_CODE" Type="nchar" MaxLength="1" />
+    <Property Name="MG_CODE" Type="nchar" MaxLength="2" />
+    <Property Name="PYRLCMP_CODE" Type="nchar" MaxLength="3" />
+    <Property Name="NATIONAL_NO" Type="nchar" MaxLength="10" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" />
+    <Property Name="FNAME" Type="nvarchar" MaxLength="30" />
+    <Property Name="FATHER_NAME" Type="nchar" MaxLength="30" />
+    <Property Name="ID_NO" Type="nvarchar" MaxLength="50" />
+    <Property Name="SEX_CODE" Type="nchar" MaxLength="1" />
+    <Property Name="BIRTH_DATE" Type="nchar" MaxLength="10" />
+    <Property Name="POST_LEVEL" Type="nchar" MaxLength="3" />
+    <Property Name="EDUCAT_LEVEL" Type="nchar" MaxLength="3" />
+    <Property Name="EMPLOYM_TYPE" Type="nchar" MaxLength="3" />
+    <Property Name="GRADE" Type="nchar" MaxLength="3" />
+    <Property Name="SERVICE_YEAR" Type="nchar" MaxLength="2" />
+    <Property Name="6626" Type="nvarchar" MaxLength="50" />
+    <Property Name="6352" Type="nvarchar" MaxLength="50" />
+    <Property Name="5184" Type="nvarchar" MaxLength="50" />
+    <Property Name="6373" Type="nvarchar" MaxLength="50" />
+    <Property Name="6356" Type="nvarchar" MaxLength="50" />
+    <Property Name="5185" Type="nvarchar" MaxLength="50" />
+    <Property Name="6357" Type="nvarchar" MaxLength="50" />
+    <Property Name="6358" Type="nvarchar" MaxLength="50" />
+    <Property Name="6369" Type="nvarchar" MaxLength="50" />
+    <Property Name="6359" Type="nvarchar" MaxLength="50" />
+    <Property Name="6362" Type="nvarchar" MaxLength="50" />
+    <Property Name="6363" Type="nvarchar" MaxLength="50" />
+    <Property Name="5181" Type="nvarchar" MaxLength="50" />
+    <Property Name="6299" Type="nvarchar" MaxLength="50" />
+    <Property Name="6178" Type="nvarchar" MaxLength="50" />
+    <Property Name="6177" Type="nvarchar" MaxLength="50" />
+    <Property Name="6364" Type="nvarchar" MaxLength="50" />
+    <Property Name="6365" Type="nvarchar" MaxLength="50" />
+    <Property Name="6353" Type="nvarchar" MaxLength="50" />
+    <Property Name="5192" Type="nvarchar" MaxLength="50" />
+    <Property Name="6366" Type="nvarchar" MaxLength="50" />
+    <Property Name="6262" Type="nvarchar" MaxLength="50" />
+    <Property Name="6367" Type="nvarchar" MaxLength="50" />
+    <Property Name="6207" Type="nvarchar" MaxLength="50" />
+    <Property Name="6206" Type="nvarchar" MaxLength="50" />
+    <Property Name="6372" Type="nvarchar" MaxLength="50" />
+    <Property Name="6368" Type="nvarchar" MaxLength="50" />
+    <Property Name="5207" Type="nvarchar" MaxLength="50" />
+    <Property Name="Main_NetSalary" Type="nvarchar(max)" />
+    <Property Name="KI_NetSalary" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="month">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="monthname" Type="nchar" MaxLength="10" />
+    <Property Name="monthnum" Type="nchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nchar" MaxLength="10" />
+    <Property Name="Pass" Type="nchar" MaxLength="10" />
+    <Property Name="CompanyStatus" Type="nchar" MaxLength="1" />
+    <Property Name="CompanyCode" Type="nchar" MaxLength="1" />
+    <Property Name="PayrollStatus" Type="nchar" MaxLength="1" />
+    <Property Name="PayrollCode" Type="nchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="year">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="yearname" Type="nchar" MaxLength="12" />
+    <Property Name="yearnum" Type="nchar" MaxLength="2" />
+  </EntityType>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="month" EntityType="Self.month" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="year" EntityType="Self.year" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Employee].[Id] AS [Id], 
+    [Employee].[SALARY_YYMM] AS [SALARY_YYMM], 
+    [Employee].[REG_NO] AS [REG_NO], 
+    [Employee].[COMPANY_CODE] AS [COMPANY_CODE], 
+    [Employee].[MG_CODE] AS [MG_CODE], 
+    [Employee].[PYRLCMP_CODE] AS [PYRLCMP_CODE], 
+    [Employee].[NATIONAL_NO] AS [NATIONAL_NO], 
+    [Employee].[NAME] AS [NAME], 
+    [Employee].[FNAME] AS [FNAME], 
+    [Employee].[FATHER_NAME] AS [FATHER_NAME], 
+    [Employee].[ID_NO] AS [ID_NO], 
+    [Employee].[SEX_CODE] AS [SEX_CODE], 
+    [Employee].[BIRTH_DATE] AS [BIRTH_DATE], 
+    [Employee].[POST_LEVEL] AS [POST_LEVEL], 
+    [Employee].[EDUCAT_LEVEL] AS [EDUCAT_LEVEL], 
+    [Employee].[EMPLOYM_TYPE] AS [EMPLOYM_TYPE], 
+    [Employee].[GRADE] AS [GRADE], 
+    [Employee].[SERVICE_YEAR] AS [SERVICE_YEAR], 
+    [Employee].[6626] AS [6626], 
+    [Employee].[6352] AS [6352], 
+    [Employee].[5184] AS [5184], 
+    [Employee].[6373] AS [6373], 
+    [Employee].[6356] AS [6356], 
+    [Employee].[5185] AS [5185], 
+    [Employee].[6357] AS [6357], 
+    [Employee].[6358] AS [6358], 
+    [Employee].[6369] AS [6369], 
+    [Employee].[6359] AS [6359], 
+    [Employee].[6362] AS [6362], 
+    [Employee].[6363] AS [6363], 
+    [Employee].[5181] AS [5181], 
+    [Employee].[6299] AS [6299], 
+    [Employee].[6178] AS [6178], 
+    [Employee].[6177] AS [6177], 
+    [Employee].[6364] AS [6364], 
+    [Employee].[6365] AS [6365], 
+    [Employee].[6353] AS [6353], 
+    [Employee].[5192] AS [5192], 
+    [Employee].[6366] AS [6366], 
+    [Employee].[6262] AS [6262], 
+    [Employee].[6367] AS [6367], 
+    [Employee].[6207] AS [6207], 
+    [Employee].[6206] AS [6206], 
+    [Employee].[6372] AS [6372], 
+    [Employee].[6368] AS [6368], 
+    [Employee].[5207] AS [5207], 
+    [Employee].[Main_NetSalary] AS [Main_NetSalary], 
+    [Employee].[KI_NetSalary] AS [KI_NetSalary]
+    FROM [dbo].[Employee] AS [Employee]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

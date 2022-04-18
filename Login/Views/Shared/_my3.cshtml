@@ -1,0 +1,806 @@
+﻿
+@model Login.Models.Yearmonth
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>NIOC Web Client</title>
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-167x167.png">
+
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/apple-icon-180x180.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="/css/common.min.css">
+    <link rel="stylesheet" href="/css/cftp.browse.min.css">
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js?v=3.7"></script>
+    <script src="/lang/i18.js?v=10" charset="utf-8"></script>
+
+    <script src="/js/cftp.functions.js?v=10"></script>
+
+    <!-- The combined tables, lightbox, block, timeago, tag, timepicker, history -->
+    <script src="/js/cftp.browse.min.js"></script>
+    <script src="/js/i18n/jquery-timeago/jquery.timeago.en.js"></script>
+
+    <!-- The combined upload plugin scripts -->
+    <script src="/js/cftp.upload.min.js"></script>
+
+
+    <script src="/js/cftp.file.js"></script>
+
+
+</head>
+<body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="hidden-xs" src="/images/logo/fava 230.70.png" width="230" height="70" alt="logo"><span class="visible-xs-inline">NIOC</span></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="home_tab" class="nav_home_item"><a style="color:white" href="#">Home</a></li>
+                    <li id="account_tab"><a href="#" style="color:white">Account</a></li>
+
+                    <li id="share_tab"><a href="#" style="color:white">Share</a></li>
+
+
+                    <li class="dropdown avtar-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/images/user_avatar.png" height="22" class="img-circle" />
+                        </a>
+                        <ul class="dropdown-menu top-dropdown">
+                            <li style="padding: 10px">
+                                <small>Logged in</small>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="/account/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <div class="page-header">
+                        <h1 class="page-title"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;File Manager</h1>
+                    </div>
+                </li>
+                <li class="active">
+                    <a href="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Home</a>
+                </li>
+                <li class="">
+                    <a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;Account</a>
+                </li>
+
+                <li class="">
+                    <a href="#"><span class="glyphicon glyphicon-cloud"></span>&nbsp;Share</a>
+                </li>
+
+
+                <li>
+                    <a href="/account/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <div id="page-content-wrapper">
+
+            <!-- Begin page content -->
+            <div class="container-fluid">
+                <div id="status-container">
+
+
+
+
+                </div>
+
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    cftp = {
+                        curDir: "/",
+                        curDirParam: "/",
+                        uploadMaxFileSize: 0,
+                        isSimpleRoot: false,
+                        dtDisplayLength: 1000,
+                        relativeDates: false,
+                        requireSharePassword: false,
+                        maxShareHours: 0,
+                        disableAllSharing: false,
+                        permissions: {
+                            dl: false,
+                            up: false,
+                            newDir: false,
+                            del: false,
+                            ren: false,
+                            zip: false,
+                            unzip: false,
+                            share: false,
+                            shareUp: false
+                        },
+                        loaded: false,
+                        thumbnails: false,
+                        lc: "en-US",
+                        lang: "en"
+                    };
+                    //]]>
+                </script>
+
+
+
+
+                <ol id="breadcrumb" class="breadcrumb">
+                    <li><a class="bc" href="#"><span class="home-link glyphicon glyphicon-home" title="/"></span></a>&nbsp;</li>
+
+                </ol>
+
+                <form id="file-op-form" name="file-op-form">
+
+                    <input type="hidden" id="cd" name="cd" value="/">
+                    <input type="hidden" id="csrftoken" name="csrftoken" value="w5vCiwhHenQ3FcKbfn06w6ZNw6TDg181HgE" />
+
+                    <div id="toolbar" class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="btn-toolbar">
+                                <div class="btn-group btn-group-sm pull-left">
+                                    <button type="button" class="btn btn-default navbar-btn" id="refresh-btn" data-placement="top" data-content="Retrieve the current directory listing again from the server" title="Retrieve directory listing"><span class="glyphicon glyphicon-refresh"></span></button>
+
+                                    <button type="button" class="btn btn-default navbar-btn" id="thumb-btn" data-placement="bottom" title="Thumbnails" data-content="Show thumbnails for images"><span class="glyphicon glyphicon-picture"></span></button>
+
+                                    <button type="button" class="btn btn-default navbar-btn" id="select-all-btn" value="Check All"><span class="glyphicon glyphicon-check"></span><span class="t"> Check All</span></button>
+
+                                    <button type="button" class="btn btn-default navbar-btn" id="delete-btn" title="Delete"><span class="glyphicon glyphicon-trash"></span><span class="t"> Delete</span></button>
+
+                                    <button type="button" class="btn btn-default navbar-btn" id="rename-btn" data-placement="bottom" title="Rename" data-content="Rename the currently selected file or folder"><span class="glyphicon glyphicon-edit"></span><span class="t"> Rename</span></button>
+
+                                    <button type="button" class="btn btn-default navbar-btn" id="create-dir-btn" data-placement="top" title="New Folder" data-content="Create a new folder in the current directory"><span class="glyphicon glyphicon-folder-close"></span><span class="t"> New Folder</span></button>
+                                </div>
+
+                                <div class="btn-group btn-group-sm pull-right">
+                                    <button type="button" class="btn btn-default navbar-btn" id="zip-btn" data-placement="top" title="Zip" data-content="Compress the selected files and directories into a single file"><span class="glyphicon glyphicon-compressed"></span><span class="t"> Zip</span></button>
+
+                                    <button type="button" class="btn btn-default navbar-btn" id="unzip-btn" data-placement="bottom" title="Unzip" data-content="Uncompress the selected zip file into the current directory"><span class="glyphicon glyphicon-resize-full"></span><span class="t"> Unzip</span></button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table id="fileList" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th class="ty hidden-sm hidden-xs">Type</th>
+                                <th class="sz hidden-xs">Size</th>
+                                <th class="dt hidden-xs">Date </th>
+                                <th class="ic"></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody class="context">
+                        </tbody>
+                    </table>
+                </form>
+                <div>
+                    <ul class="nav nav-tabs" id="myTab" style="float:right; display:block; direction:rtl;@*padding:6px;margin:12px 370px*@">
+                        <li style="float:right" class="active"><a href="#home" data-toggle="tab">اطلاعات حقوق</a></li>
+                        <li style="float:right"><a href="#profile" data-toggle="tab">اطلاعات پرسنلی</a></li>
+                        <li style="float:right"><a href="#messages" data-toggle="tab">روند بارگذاری</a></li>
+                        <li style="float:right"><a href="#settings" data-toggle="tab">اطلاعات بیشتر</a></li>
+                        @*<li style="float:right"><a href="#settings" data-toggle="tab" onclick="refresh()">اطلاعات بیشتر</a></li>*@
+
+                    </ul>
+
+                    <script>
+                        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+                            localStorage.setItem('activeTab', $(e.target).attr('href'));
+                        });
+                        var activeTab = localStorage.getItem('activeTab');
+                        console.log(activeTab);
+                        if (activeTab) {
+                            $('a[href="' + activeTab + '"]').tab('show');
+                        }
+                    </script>
+
+                    <div class="tab-content" style="float:right; display:block; direction:rtl;@*padding:1px;margin:3px -670px*@">
+                        <div class="tab-pane active" id="home">@RenderBody()</div>
+                        <div class="tab-pane" id="profile">
+                            <center>
+                                <br /><br /><br /><br /><br />
+                                <h2>انتخاب ماه و سال</h2>
+                            </center>
+
+                        </div>
+                        <div class="tab-pane" id="messages"><br /><br /><br /><br /><br /> محتوای تب 2</div>
+                        <div class="tab-pane" id="settings"><br /><br /><br /><br /><br />محتوای تب 3</div>
+                    </div>
+
+                </div>
+                <div id="context-menu">
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a id="create-dir-menu" tabindex="-1" href="#">New Folder</a></li>
+                        <li class="divider"></li>
+                        <li><a id="refresh-menu" tabindex="-1" href="#">Refresh</a></li>
+                        <li class="divider"></li>
+                        <li><a id="cut-menu" tabindex="-1" href="#">Cut</a></li>
+                        <li><a id="copy-menu" tabindex="-1" href="#">Copy</a></li>
+                        <li><a id="paste-menu" tabindex="-1" href="#">Paste</a></li>
+                        <li class="divider"></li>
+                        <li><a id="delete-menu" tabindex="-1" href="#">Delete</a></li>
+                        <li class="divider"></li>
+                        <li><a id="rename-menu" tabindex="-1" href="#">Rename</a></li>
+                    </ul>
+                </div>
+
+                <!-- The Delete confirmation dialog -->
+                <div class="modal fade" id="dialog-delete-confirm" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="deleteDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="deleteDialogLabel">Delete the selected items?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-warning">
+                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    The selected items will be permanently deleted. Are you sure?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-delete-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- The UnZip confirmation dialog -->
+                <div class="modal fade" id="dialog-unzip-confirm" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="unzipDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="unzipDialogLabel">Unzip the selected items?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="help-block">
+                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    The selected zip files will be unzipped into the current directory. This operation may take a while.<br /><br />Are you sure?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-unzip-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-compressed"></span> Unzip</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- The Zip confirmation dialog -->
+                <div class="modal fade" id="dialog-zip-confirm" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="zipDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="zipDialogLabel">Zip the selected items?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="help-block">
+                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    Are you sure you want to create a zip file with the selected items?
+                                </p>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="zipname">Zip Filename</label>
+                                    <input class="form-control" type="text" id="zipname" name="zipname" value="archive.zip" autocomplete="off" />
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="downloadOnly" id="downloadOnly" type="checkbox" value="on" checked=checked /> Do not save zip file on server (download immediately)
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-zip-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-compressed"></span> Zip</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- The Create Directory dialog -->
+                <div class="modal fade" id="dialog-form-create-dir" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="createDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="createDialogLabel">Create New Folder?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="createDirForm" name="createDirForm">
+                                    <fieldset class="noborder">
+                                        <p class="help-block">
+                                            <span class="glyphicon glyphicon-question-sign"></span>
+                                            Are you sure you want to create a new folder with the selected name?
+                                        </p>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="cdir">Relative To</label>
+                                            <input class="form-control" type="text" readonly="readonly" name="cd" id="cdir" value="/" autocomplete="off" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="ndir">Folder</label>
+                                            <input class="form-control" type="text" name="ndir" id="ndir" value="" autocomplete="off" />
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-new-folder-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Create</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- The Rename dialog -->
+                <div class="modal fade" id="dialog-form-rename" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="renameDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="renameDialogLabel">Rename File or Folder?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="renameForm" name="renameForm">
+                                    <fieldset class="noborder">
+                                        <p class="help-block">
+                                            <span class="glyphicon glyphicon-question-sign"></span>
+                                            Are you sure you want to rename the selected item?
+                                        </p>
+
+                                        <input type="hidden" id="cd_ren" name="cd" value="/" />
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="rfrom">Rename From</label>
+                                            <input class="form-control" type="text" id="rfrom" name="rfrom" value="" autocomplete="off" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="rto">Rename To</label>
+                                            <input class="form-control" type="text" id="rto" name="rto" value="" autocomplete="off" />
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-rename-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Rename</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- The Share File dialog -->
+                <div class="modal fade" id="dialog-share-file" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="shareDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="shareDialogLabel">Share the selected item?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="shareForm" name="shareForm" method="post">
+                                    <div id="shareFormErrorMsg"></div>
+                                    <fieldset class="noborder">
+                                        <p class="help-block">
+                                            <span class="glyphicon glyphicon-question-sign"></span>
+                                            A unique public link will be created to share the selected item. Are you sure?
+                                        </p>
+                                        <div class="form-group">
+                                            <label class="control-label" for="file-to-share">File</label>
+                                            <input class="form-control" type="text" id="file-to-share" name="file-to-share" value="" readonly="readonly" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="file-share-datepicker">Available Until <small name="max-share-end-date" class="text-info"></small></label>
+                                            <div class="input-group date" id="file-share-datepicker-ctl">
+                                                <input id="file-share-datepicker" name="file-share-datepicker" type="datetime" class="form-control" autocomplete="off" placeholder="Default hours: 24" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="file-share-password">Share Link Password</label>
+                                            <div class="input-group">
+                                                <input class="form-control" type="password" id="file-share-password" name="file-share-password" placeholder="Leave blank for no password" autocomplete="off" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" id="show-hide-share-password-btn" type="button" title="Show password"><span class="glyphicon glyphicon-eye-close"></span></button>
+                                                </span>
+                                            </div><!-- /input-group -->
+
+                                        </div>
+
+                                        <div class="form-group" name="file-share-allow-downloads-opt">
+                                            <div class="checkbox">
+                                                <label class="control-label" for="file-share-allow-downloads">
+                                                    <input type="checkbox" id="file-share-allow-downloads" name="file-share-allow-downloads" value="on" checked="checked" />
+                                                    Allow Public Downloads
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" name="file-share-allow-uploads-opt">
+                                            <div class="checkbox">
+                                                <label class="control-label" for="file-share-allow-uploads">
+                                                    <input type="checkbox" id="file-share-allow-uploads" name="file-share-allow-uploads" value="on" />
+                                                    Allow Public Uploads to this folder
+                                                </label> <a name="file-share-allow-uploads-popup" data-toggle="popover" data-placement="top" title="" data-content="Checking this option allows anyone to upload a file to this public folder"><span class="glyphicon glyphicon-question-sign"></span></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label class="control-label" for="file-share-send-notify">
+                                                    <input type="checkbox" id="file-share-send-notify" name="file-share-send-notify" value="on" />
+                                                    Notify me by email when file is downloaded or uploaded
+                                                </label> <a name="send-notify-popup" data-toggle="popover" data-placement="top" title="" data-content="You are only notified the first time the file is accessed or a file is uploaded to or downloaded from a folder"><span class="glyphicon glyphicon-question-sign"></span></a>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-share-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> Share</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- The Email File dialog -->
+                <div class="modal fade" id="dialog-email-file" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="emailDialogLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="emailDialogLabel"><span class="glyphicon glyphicon-envelope"></span> Email the selected item?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div id="emailFormErrorMsg"></div>
+                                <form id="emailForm" name="emailForm">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h4 class="title">Email Information</h4>
+                                            <p class="text-info">
+                                                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                                A unique public link will be created to share and email the selected item.
+                                            </p>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="email-to-share">File or Folder</label>
+                                                <input class="form-control" type="text" id="email-to-share" name="email-to-share" value="" readonly="readonly" />
+                                            </div>
+
+                                            <div class="form-group required">
+                                                <label class="control-label" for="email-to-email">To Email <a id="email-info-popup"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+                                                <input class="form-control" type="text" id="email-to-email" name="email-to-email" placeholder="Recipient email" required="required" autocomplete="off" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="email-subject">Subject</label>
+                                                <input class="form-control" type="text" id="email-subject" name="email-subject" placeholder="Subject" required="required" value="New Shared File" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="email-body">Body<small> (optional)</small></label>
+                                                <textarea class="form-control" id="email-body" name="email-body" placeholder="The body of your email"></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h4 class="title">Access Link Information</h4>
+                                            <p class="text-info">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                Limit the duration the link will be available, allow customers to upload files, and optionally, password protect the link.
+                                            </p>
+                                            <div class="form-group">
+                                                <label class="control-label" for="email-share-datepicker">Available Until <small name="max-share-end-date" class="text-info"></small></label>
+                                                <div class="input-group date" id="email-share-datepicker-ctl">
+                                                    <input id="email-share-datepicker" name="email-share-datepicker" type="datetime" class="form-control" autocomplete="off" placeholder="Default hours: 24" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" name="file-share-allow-downloads-opt">
+                                                <div class="checkbox">
+                                                    <label class="control-label" for="email-share-allow-downloads">
+                                                        <input type="checkbox" id="email-share-allow-downloads" name="email-share-allow-downloads" value="on" checked="checked" />
+                                                        Allow Public Downloads
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" name="file-share-allow-uploads-opt">
+                                                <div class="checkbox">
+                                                    <label class="control-label" for="email-share-allow-uploads">
+                                                        <input type="checkbox" id="email-share-allow-uploads" name="email-share-allow-uploads" value="on" />
+                                                        Allow Public Uploads to this folder
+                                                    </label> <a name="file-share-allow-uploads-popup" data-toggle="popover" data-placement="top" title="" data-content="Checking this option allows anyone to upload a file to this public folder"><span class="glyphicon glyphicon-question-sign"></span></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="email-link-password">Share Link Password</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="password" id="email-link-password" name="email-link-password" placeholder="Leave blank for no password" autocomplete="off" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" id="show-hide-email-password-btn" type="button" title="Show password"><span class="glyphicon glyphicon-eye-close"></span></button>
+                                                    </span>
+                                                </div><!-- /input-group -->
+                                            </div>
+                                            <h4>Other Settings<small> (optional)</small></h4>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label class="control-label" for="email-send-notify">
+                                                        <input type="checkbox" id="email-send-notify" name="email-send-notify" value="on" />
+                                                        Notify me by email when file is downloaded or uploaded
+                                                    </label> <a name="send-notify-popup" data-toggle="popover" data-placement="top" title="" data-content="You are only notified the first time the file is accessed or a file is uploaded to or downloaded from a folder"><span class="glyphicon glyphicon-question-sign"></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label class="control-label" for="email-send-copy">
+                                                        <input type="checkbox" id="email-send-copy" name="email-send-copy" value="on" />
+                                                        Send me a copy of this email
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="form-group">
+                                              <div class="checkbox">
+                                                <label class="control-label" for="email-delete-expire">
+                                                    <input type="checkbox" id="email-delete-expire" name="email-delete-expire" value="on" />
+                                                    Delete file after expiration
+                                                </label>
+                                              </div>
+                                            </div>
+                                            -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="dlg-email-confirm-btn" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span> Email</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="modal fade" name="fileUploadPromptDlg" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">File already exists</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>The file <b><span name="upload-file-name"></span></b> already exists.</p>
+                                <p>What would you like to do?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button name="fileUploadPromptDlg_cancelBtn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button name="fileUploadPromptDlg_overwriteBtn" type="button" class="btn btn-danger">Overwrite File</button>
+                                <button name="fileUploadPromptDlg_resumeBtn" type="button" class="btn btn-primary">Resume</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+
+                <div id="fileupload" class="panel panel-default tip" style="display:none" data-placement="top" title="Upload Controls" data-content="Use these controls to upload files to the server.  The &#39;Add Files&#39; button will add upload files to the queue, and the &#39;Start Upload&#39; button will begin uploading files from the queue.  You can also drag and drop files into the web browser to add those files to the queue (on supported browsers).">
+                    <div class="panel-body">
+
+                        <!-- The file upload form used as target for the file upload widget -->
+                        <form action="/file/upload" method="POST" enctype="multipart/form-data">
+
+                            <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                            <div class="row fileupload-buttonbar">
+                                <div class="col-md-8 pull-left">
+                                    <!-- The fileinput-button span is used to style the file input field as button -->
+                                    <span class="btn btn-sm btn-success fileinput-button">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        <span>Add Files...</span>
+                                        <input type="file" name="files[]" multiple>
+                                    </span>
+
+                                    <span class="btn btn-sm btn-success fileinput-button">
+                                        <i class="glyphicon glyphicon-folder-open"></i>&nbsp;
+                                        <span>Add Folder...</span>
+                                        <input type="file" name="files[]" multiple directory webkitdirectory>
+                                    </span>
+
+                                    <button type="submit" class="btn btn-sm btn-primary start">
+                                        <i class="glyphicon glyphicon-upload"></i>
+                                        <span>Start Upload</span>
+                                    </button>
+                                    <button type="reset" class="btn btn-sm btn-default cancel">
+                                        <i class="glyphicon glyphicon-ban-circle"></i>
+                                        <span>Cancel</span>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-default delete">
+                                        <i class="glyphicon glyphicon-remove-circle"></i>
+                                        <span>Clear</span>
+                                    </button>
+                                    <!-- The loading indicator is shown during file processing -->
+                                    <span class="fileupload-loading"></span>
+                                </div>
+                                <div class="col-md-4 pull-right">
+                                    <div class="pull-right hidden-xs"><small class="text-muted">&nbsp; Upload Drag &amp; Drop on</small> <img src="/images/browsers.png" width="85" height="20" alt="browsers" title="Firefox, IE 10+, Chrome, Safari" /></div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <!-- The global progress information -->
+                            <div class="fileupload-progress fade">
+                                <!-- The global progress bar -->
+                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                                </div>
+                                <!-- The extended global progress information -->
+                                <div class="progress-extended"></div>
+                            </div>
+                        </form>
+
+                        <!-- The template to display files available for upload -->
+                        <script id="template-upload" type="text/x-tmpl">
+                            {% for (var i=0, file; file=o.files[i]; i++) { %}
+                                <tr class="template-upload fade">
+                                    <td>
+                                        <span class="preview"></span>
+                                    </td>
+                                    <td>
+                                        <p class="name">
+                                            {% if (file.webkitRelativePath) { %}
+                                                {%=file.webkitRelativePath%}
+                                            {% } else if (file.relativePath) { %}
+                                                {%=file.relativePath%}{%=file.name%}
+                                            {% } else { %}
+                                                {%=file.name%}
+                                            {% } %}
+                                        </p>
+                                        <strong class="error text-danger"></strong>
+                                    </td>
+                                    <td>
+                                        <p class="size">null</p>
+                                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                            <div class="progress-bar progress-bar-success" style="width:0%"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if (!i && !o.options.autoUpload) { %}
+                                            <button class="btn btn-sm btn-primary start" disabled>
+                                                <i class="glyphicon glyphicon-upload"></i>
+                                                <span>Start</span>
+                                            </button>
+                                        {% } %}
+                                        {% if (!i) { %}
+                                            <button class="btn btn-sm btn-warning cancel">
+                                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                                <span>Cancel</span>
+                                            </button>
+                                        {% } %}
+                                    </td>
+                                </tr>
+                            {% } %}
+                        </script>
+                        <!-- The template to display files available for download -->
+                        <script id="template-download" type="text/x-tmpl">
+                            {% for (var i=0, file; file=o.files[i]; i++) { %}
+                                <tr class="template-download fade">
+                                    <td>
+                                        <span class="preview">
+                                            {% if (file.thumbnailUrl) { %}
+                                                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                                            {% } %}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <p class="name">
+                                            {% if (file.url) { %}
+                                                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                                            {% } else { %}
+                                                <span>{%=file.name%}</span>
+                                            {% } %}
+                                        </p>
+                                        {% if (file.error) { %}
+                                            <div><span class="label label-danger">null</span> {%=file.error%}</div>
+                                        {% } %}
+                                    </td>
+                                    <td>
+                                        <span class="size">{%=o.formatFileSize(file.size)%}</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-default delete">
+                                            <i class="glyphicon glyphicon-remove-circle"></i>
+                                            <span>Clear</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% } %}
+                        </script>
+                    </div>
+
+                    <!-- The table listing the files available for upload/download -->
+                    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+
+                </div>
+
+                <script src="/js/main.js?v=9.4"></script>
+
+
+
+            </div>
+            <!-- End page content -->
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+
+    <div id="footer" style="justify-content:left;display:inherit">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-2">
+                    <p class="text-muted credit">
+                        <span class="text-muted"><span class="label label-lc">English</span></span>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    <p class="text-muted credit text-center">
+                        <a href="#">Home</a>
+                        &nbsp;<span class="sep_footer_nav">|</span><a href="#">Account</a>
+                        &nbsp;<span class="sep_footer_nav">|</span><a href="#">Share</a>
+                        &nbsp;<span class="sep_footer_nav">|</span><a href="#" id="_context_help_"><span class="glyphicon glyphicon-question-sign"></span> </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
